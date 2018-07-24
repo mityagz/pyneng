@@ -12,8 +12,8 @@ command1 = 'switchport trunk allowed vlan 1,3,10,20,30,100'
 command2 = 'switchport trunk allowed vlan 1,3,100,200,300'
 
 
-In [341]: s = set([ int(vlan) for vlan in command1.split()[4].split(',') if vlan.isdigit() ]) & set([ int(vlan) for vlan in command2.split()[4].split(',') if vlan.isd
-     ...: igit() ])
+In [345]: s = list(set([ int(vlan) for vlan in command1.split()[4].split(',') if vlan.isdigit() ]) & set([ int(vlan) for vlan in command2.split()[4].split(',') if vla
+     ...: n.isdigit() ]))
 
-In [342]: s
-Out[342]: {1, 3, 100}
+In [346]: s
+Out[346]: [1, 3, 100]

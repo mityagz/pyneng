@@ -25,7 +25,7 @@ try:
         for l in cam:
           if l.find('.') != -1:
             m = l.split()
-            print(m)
+            print(l.rstrip())
 except:
     print('No such file')
 finally:

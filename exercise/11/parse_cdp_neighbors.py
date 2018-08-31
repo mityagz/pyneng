@@ -9,9 +9,16 @@ def parse_cdp_neighbors(cdp_neib):
     if 'show cdp neighbors' in l:
      root = l.split(">")[0]
     else:
-     neib = l.split('       ')
-     s = tuple([root, neib[1].lstrip()])
-     d = tuple([neib[0], neib[5]])
+     neib = l.split(' ')
+     #print(neib)
+     i = 0
+     for l in neib:
+      if 'Eth' in neib[i]: 
+       #s = tuple([root, neib[i].lstrip() + neib[i + 1].lstrip()])
+       s = tuple([root, neib[i].lstrip() + " " + neib[i + 1].lstrip()])
+       break
+      i += 1
+     d = tuple([neib[0], neib[-2] +  " " + neib[-1]])
      cdp_parsed[s] = d
   return cdp_parsed
 
@@ -21,7 +28,7 @@ def parse_cdp_neighbors(cdp_neib):
 def ignore_lines(l):
  r = []
  for i in l:
-  if not 'Capability Codes:' in i and not 'Device ID' in i and not 'S - Switch, H - Host, I - IGMP, r - Repeater, ' in i:
+  if not 'Capability Codes:' in i and not 'Device ID' in i and not 'S - Switch' in i:
    if i == '':
     pass
    else:

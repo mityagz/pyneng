@@ -10,46 +10,46 @@
 <title>%3</title>
 <polygon fill="#333333" stroke="none" points="-4,4 -4,-227 390.861,-227 390.861,4 -4,4"/>
 <text text-anchor="middle" x="193.431" y="-9.2" font-family="Times,serif" font-size="16.00" fill="white">Network Map</text>
-<!-- R3 -->
-<g id="node1" class="node"><title>R3</title>
-<polygon fill="#006699" stroke="#006699" points="91.8611,-223 15.8611,-223 15.8611,-150 91.8611,-150 91.8611,-223"/>
-<text text-anchor="middle" x="53.8611" y="-182.8" font-family="Helvetica,sans-Serif" font-size="14.00" fill="white">R3</text>
-</g>
 <!-- R2 -->
-<g id="node2" class="node"><title>R2</title>
-<polygon fill="#006699" stroke="#006699" points="214.861,-223 138.861,-223 138.861,-150 214.861,-150 214.861,-223"/>
-<text text-anchor="middle" x="176.861" y="-182.8" font-family="Helvetica,sans-Serif" font-size="14.00" fill="white">R2</text>
-</g>
-<!-- R1 -->
-<g id="node3" class="node"><title>R1</title>
-<polygon fill="#006699" stroke="#006699" points="337.861,-223 261.861,-223 261.861,-150 337.861,-150 337.861,-223"/>
-<text text-anchor="middle" x="299.861" y="-182.8" font-family="Helvetica,sans-Serif" font-size="14.00" fill="white">R1</text>
+<g id="node1" class="node"><title>R2</title>
+<polygon fill="#006699" stroke="#006699" points="91.8611,-223 15.8611,-223 15.8611,-150 91.8611,-150 91.8611,-223"/>
+<text text-anchor="middle" x="53.8611" y="-182.8" font-family="Helvetica,sans-Serif" font-size="14.00" fill="white">R2</text>
 </g>
 <!-- SW1 -->
-<g id="node4" class="node"><title>SW1</title>
+<g id="node2" class="node"><title>SW1</title>
 <polygon fill="#006699" stroke="#006699" points="221.361,-99 132.361,-99 132.361,-26 221.361,-26 221.361,-99"/>
 <text text-anchor="middle" x="176.861" y="-58.8" font-family="Helvetica,sans-Serif" font-size="14.00" fill="white">SW1</text>
 </g>
-<!-- SW1&#45;&#45;R3 -->
-<g id="edge3" class="edge"><title>SW1&#45;&#45;R3</title>
+<!-- SW1&#45;&#45;R2 -->
+<g id="edge2" class="edge"><title>SW1&#45;&#45;R2</title>
 <path fill="none" stroke="green" stroke-dasharray="5,2" d="M132.227,-77.0716C111.46,-85.4899 88.0488,-98.3383 72.8611,-117 65.3047,-126.285 60.7468,-138.368 58,-149.796"/>
 <text text-anchor="middle" x="122.861" y="-120.8" font-family="Courier,monospace" font-size="14.00" fill="white"> &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;</text>
 <text text-anchor="middle" x="29" y="-138.596" font-family="Courier,monospace" font-size="14.00" fill="white">Eth 0/0</text>
-<text text-anchor="middle" x="103.227" y="-65.8716" font-family="Courier,monospace" font-size="14.00" fill="white">Eth 0/3</text>
+<text text-anchor="middle" x="107.227" y="-65.8716" font-family="Courier,monospace" font-size="14.00" fill="white">Eth0/2</text>
 </g>
-<!-- SW1&#45;&#45;R2 -->
-<g id="edge2" class="edge"><title>SW1&#45;&#45;R2</title>
-<path fill="none" stroke="green" stroke-dasharray="5,2" d="M176.861,-99.1154C176.861,-115.01 176.861,-133.704 176.861,-149.629"/>
-<text text-anchor="middle" x="226.861" y="-120.8" font-family="Courier,monospace" font-size="14.00" fill="white"> &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;</text>
-<text text-anchor="middle" x="147.861" y="-138.429" font-family="Courier,monospace" font-size="14.00" fill="white">Eth 0/0</text>
-<text text-anchor="middle" x="147.861" y="-102.915" font-family="Courier,monospace" font-size="14.00" fill="white">Eth 0/2</text>
+<!-- R1 -->
+<g id="node3" class="node"><title>R1</title>
+<polygon fill="#006699" stroke="#006699" points="214.861,-223 138.861,-223 138.861,-150 214.861,-150 214.861,-223"/>
+<text text-anchor="middle" x="176.861" y="-182.8" font-family="Helvetica,sans-Serif" font-size="14.00" fill="white">R1</text>
 </g>
 <!-- SW1&#45;&#45;R1 -->
 <g id="edge1" class="edge"><title>SW1&#45;&#45;R1</title>
+<path fill="none" stroke="green" stroke-dasharray="5,2" d="M176.861,-99.1154C176.861,-115.01 176.861,-133.704 176.861,-149.629"/>
+<text text-anchor="middle" x="226.861" y="-120.8" font-family="Courier,monospace" font-size="14.00" fill="white"> &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;</text>
+<text text-anchor="middle" x="147.861" y="-138.429" font-family="Courier,monospace" font-size="14.00" fill="white">Eth 0/0</text>
+<text text-anchor="middle" x="151.861" y="-102.915" font-family="Courier,monospace" font-size="14.00" fill="white">Eth0/1</text>
+</g>
+<!-- R3 -->
+<g id="node4" class="node"><title>R3</title>
+<polygon fill="#006699" stroke="#006699" points="337.861,-223 261.861,-223 261.861,-150 337.861,-150 337.861,-223"/>
+<text text-anchor="middle" x="299.861" y="-182.8" font-family="Helvetica,sans-Serif" font-size="14.00" fill="white">R3</text>
+</g>
+<!-- SW1&#45;&#45;R3 -->
+<g id="edge3" class="edge"><title>SW1&#45;&#45;R3</title>
 <path fill="none" stroke="green" stroke-dasharray="5,2" d="M221.437,-78.2791C241.149,-86.8239 263.146,-99.43 277.861,-117 285.641,-126.288 290.683,-138.373 293.946,-149.8"/>
 <text text-anchor="middle" x="336.861" y="-120.8" font-family="Courier,monospace" font-size="14.00" fill="white"> &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;</text>
 <text text-anchor="middle" x="264.946" y="-138.6" font-family="Courier,monospace" font-size="14.00" fill="white">Eth 0/0</text>
-<text text-anchor="middle" x="250.437" y="-67.0791" font-family="Courier,monospace" font-size="14.00" fill="white">Eth 0/1</text>
+<text text-anchor="middle" x="246.437" y="-67.0791" font-family="Courier,monospace" font-size="14.00" fill="white">Eth0/3</text>
 </g>
 </g>
 </svg>

@@ -1,0 +1,3 @@
+./151.py '0/[13] ' sh_ip_int_br_switch.txt
+FastEthernet0/1            unassigned      YES unset  up                    up
+FastEthernet0/3            unassigned      YES unset  up                    up

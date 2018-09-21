@@ -1,0 +1,4 @@
+hostname,ios,image,uptime
+r2,c7200-js-mz.124-4.T,C7200-JS-M 12.4(4)T,"45 days, 8 hours, 22 minutes"
+r1,c1841-advipservicesk9-mz.124-15.T1.bin,C1841-ADVIPSERVICESK9-M 12.4(15)T1,"15 days, 8 hours, 32 minutes"
+r3,c7200-js-mz.124-4.T,C7200-JS-M 12.4(4)T,"5 days, 18 hours, 2 minutes"

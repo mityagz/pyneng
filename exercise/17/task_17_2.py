@@ -38,7 +38,7 @@ def parse_sh_cdp_neighbors(sh_cdp):
   h = re.search('(?P<host>\S+)>show cdp neighbors', l)
   if h:
    host = h.group('host')
-  n = re.search('(?P<nhost>\S+)\s+(?P<lintf>\w+\s?\S+)\s+\d+\s+(?:\w )+\s+\.*\s+(?P<nintf>\w+\s?\S+)', l)
+  n = re.search('(?P<nhost>\S+)\s+(?P<lintf>\w+\s?\S+)\s+\d+\s+(\w )+\s+\S+\s+(?P<nintf>\w+\s?\S+)', l)
   if n:
    nhost, lintf, nintf = n.group('nhost', 'lintf', 'nintf')
    nei[lintf] = {nhost: nintf}

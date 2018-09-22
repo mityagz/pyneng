@@ -1,6 +1,7 @@
 #!/home/python/n/pyneng/bin/python
 import task_17_2 as pcdp
 import glob
+import yaml
 
 # -*- coding: utf-8 -*-
 '''
@@ -32,15 +33,18 @@ import glob
 
 sh_version_files = glob.glob('sh_cdp_n_*')
 
-result = {}
+topology = {}
 
 for ff in sh_version_files:
  with open(ff) as f:
   r = pcdp.parse_sh_cdp_neighbors(f.read())
   for k in r.keys():
-   result[k] = r[k]
+   topology[k] = r[k]
 
-print(result)
+print(topology)
+
+with open('topology.yaml', 'w') as f:
+ y = yaml.dump(topology, f)
 
 '''
 ./task_17_2a.py 

@@ -47,10 +47,10 @@ def parse_sh_cdp_neighbors(sh_cdp):
 
  return result
 
-with open(sys.argv[1]) as f:
-  sh_cdp = f.read()
 
 if __name__ == '__main__':
+ with open(sys.argv[1]) as f:
+  sh_cdp = f.read()
  print(parse_sh_cdp_neighbors(sh_cdp))
 
 '''

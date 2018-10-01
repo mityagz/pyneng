@@ -55,5 +55,3 @@ if __name__ == '__main__':
   create_db(db_filename, schema_filename)
  else:
   print('Database exists, assume dhcp table does, too.')
-
- 

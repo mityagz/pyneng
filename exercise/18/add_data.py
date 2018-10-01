@@ -20,6 +20,7 @@ import sqlite3
 import glob
 import yaml
 import re
+import create_db as db
 
 db_filename = 'dhcp_snooping.db'
 dhcp_snoop_files = glob.glob('sw*_dhcp_snooping.txt')
@@ -75,14 +76,16 @@ def get_data_dhcp(dhcp_snoop):
 if __name__ == '__main__':
    data_dhcp_a = []
    data_sw = get_data_sw(sw)
-   print(data_sw)
 
    for dhcp_snoop_file in dhcp_snoop_files:
     data_dhcp = get_data_dhcp(dhcp_snoop_file)
     for t in data_dhcp:
      data_dhcp_a.append(t)
 
-   print(data_dhcp_a)
+
+   if not db.is_db_exist():
+    print('Db not exist, create first please')
+    exit(1)
 
    c = create_connection(db_filename)
    q_insert_sw = 'INSERT into switches values (?, ?)'

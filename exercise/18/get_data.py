@@ -33,15 +33,17 @@ def query(key=False, value=False):
  return query
  
 
-value = ''
-if len(sys.argv[1:]) == 2:
- key, value = sys.argv[1:]
- keys.remove(key)
- res = get_data(query(key, value), value)
-elif len(sys.argv[1:]) == 0:
- res = get_data(query(), value)
-else:
- print('Too many args, need 0 or 2')
- exit(1)
+if __name__ == '__main__':
+ value = ''
+ if len(sys.argv[1:]) == 2:
+  key, value = sys.argv[1:]
+  keys.remove(key)
+  res = get_data(query(key, value), value)
+ elif len(sys.argv[1:]) == 0:
+  res = get_data(query(), value)
+ else:
+  print('Too many args, need 0 or 2')
+  exit(1)
 
-print_data(res, value)
+ print_data(res, value)
+

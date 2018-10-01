@@ -37,6 +37,10 @@ if __name__ == '__main__':
  value = ''
  if len(sys.argv[1:]) == 2:
   key, value = sys.argv[1:]
+  if not key in keys:
+   print('parameter {} isn\'t support'.format(key))
+   print('Try {}'.format(', '.join(keys)))
+   exit(1)
   keys.remove(key)
   res = get_data(query(key, value), value)
  elif len(sys.argv[1:]) == 0:

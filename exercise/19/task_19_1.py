@@ -32,13 +32,6 @@ DEVICES_IP = ['10.100.0.30', '10.100.0.31', '10.100.0.32']
 USER = 'cisco'
 PASSWORD = 'cisco5'
 
-#DEVICE_PARAMS = {
-# 'device_type': 'juniper_junos',
-# 'ip': IP,
-# 'username': USER,
-# 'password': PASSWORD
-#}
-
 def send_show_command(device, command):
  r = {}
  DEVICE_PARAMS = device

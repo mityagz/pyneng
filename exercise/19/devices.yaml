@@ -1,0 +1,16 @@
+routers:
+- device_type: juniper_junos
+  ip: 10.100.0.30
+  username: cisco
+  password: cisco5
+  secret: cisco
+- device_type: juniper_junos
+  ip: 10.100.0.31
+  username: cisco
+  password: cisco5
+  secret: cisco
+- device_type: juniper_junos
+  ip: 10.100.0.32
+  username: cisco
+  password: cisco5
+  secret: cisco

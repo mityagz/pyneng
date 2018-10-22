@@ -30,9 +30,10 @@ def generate_cfg_from_template(tmpl, vfile):
  template = env.get_template(template_file)
 
  vars_dict = yaml.load(open(VARS_FILE))
- print(template.render(vars_dict))
+ return template.render(vars_dict)
 
 if __name__ == '__main__':
  template = sys.argv[1]
  fvars = sys.argv[2]
- generate_cfg_from_template(template, fvars)
+ r = generate_cfg_from_template(template, fvars)
+ print(r)

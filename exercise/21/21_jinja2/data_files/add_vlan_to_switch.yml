@@ -1,0 +1,11 @@
+vlan_id: 10
+name: Marketing
+vlans:
+  10: Marketing
+  20: Voice
+  30: Management
+access:
+  - Fa0/1
+trunk:
+  - Fa0/23
+  - Fa0/24

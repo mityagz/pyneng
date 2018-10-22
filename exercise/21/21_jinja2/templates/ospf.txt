@@ -1,4 +1,12 @@
 !
+{% if process is not number  %}
+ {% set process = 1 %}
+{% endif %}
+
+{% if ref_bw is not number  %}
+ {% set ref_bw = 10000 %}
+{% endif %}
+
 router ospf {{ process | default(1) }}
  router-id  {{ router_id }}
  auto-cost reference-bandwidth {{ ref_bw | default(10000) }}

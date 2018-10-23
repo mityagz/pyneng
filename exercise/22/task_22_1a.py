@@ -21,11 +21,7 @@ def parse_output(tmpl, showcmd):
      header = re_table.header
      result = re_table.ParseText(showcmd)
      for e in result:
-      rr = {}
-      i = 0
-      for h in header:
-       rr[h] = e[i]
-       i = i + 1
+      rr = dict(zip(header, e))
       r.append(rr)
  return r
 

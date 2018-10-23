@@ -1,0 +1,9 @@
+Value MacAddress (([0-9A-F]{2}[:-]){5}([0-9A-F]{2}))
+Value IpAddress (\S+)
+Value Lease (\S+)
+Value Type (\S+)
+Value VLAN (\S+)
+Value Interface (\S+)
+
+Start
+  ^${MacAddress}\s+${IpAddress}\s+${Lease}\s+${Type}\s+${VLAN}\s+${Interface} -> Record

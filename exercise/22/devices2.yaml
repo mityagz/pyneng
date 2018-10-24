@@ -1,0 +1,9 @@
+routers:
+- device_type: juniper_junos
+  ip: 10.100.0.33
+- device_type: juniper_junos
+  ip: 10.100.0.30
+- device_type: juniper_junos
+  ip: 10.100.0.31
+- device_type: juniper_junos
+  ip: 10.100.0.32

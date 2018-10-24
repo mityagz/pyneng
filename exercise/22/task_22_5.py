@@ -40,23 +40,27 @@ import yaml
 
 
 def send_and_parse_command(fdev, attributes, idx, tmpl, command, verbose): 
+
  USER = 'cisco'
  PASSWORD = 'cisco5'
 
- with open(fdev, 'r') as f:
-  y = yaml.load(f)
+ print(fdev)
 
+ with open('devices2.yaml', 'r') as f:
+  y = yaml.load(f)
+  
   for r in y['routers']:
    r['username'] = USER
    r['password'] = PASSWORD
 
   rrr = {}
-  for device in y['routers']:
-   r = send.send_show_command(device, command)
-   for k in r.keys():
-    rr =  parse.parse_command_dynamic(attributes, idx, tmpl, r[k], verbose)
-    rrr[k] = rr
-  return rrr
+  #for device in y['routers']:
+  #r = send.send_show_command(device, command)
+  r = send.send_show_command(fdev, command)
+  for k in r.keys():
+   rr =  parse.parse_command_dynamic(attributes, idx, tmpl, r[k], verbose)
+   rrr[k] = rr
+ return rrr
 
 if __name__ == '__main__':
  #command = 'run show system uptime | match Up'

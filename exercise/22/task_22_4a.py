@@ -15,7 +15,7 @@ import clitable
 def parse_command_dynamic(attrs, idx, templates, commands, show_output=False):
  cli_table = clitable.CliTable('index', 'templates')
 
- cli_table.ParseCmd(output_sh_ip_route_ospf, attributes)
+ cli_table.ParseCmd(commands, attrs)
 
 
  data_rows = [list(row) for row in cli_table]

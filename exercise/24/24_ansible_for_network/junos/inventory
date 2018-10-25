@@ -1,0 +1,7 @@
+CE0 ansible_host=10.100.0.30
+CE1 ansible_host=10.100.0.31
+CE2 ansible_host=10.100.0.32
+CE3 ansible_host=10.100.0.33
+
+[all:vars]
+ansible_python_interpreter=/home/python/n/pyneng/bin/python

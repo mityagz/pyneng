@@ -33,6 +33,10 @@
     - debug:
         var: ansible_host
 
+    #- name: display uptime
+    #  debug:
+    #    var: uptime
+
     - name: display uptime
       debug:
-        var: uptime
+        var: uptime['stdout_lines']

@@ -11,7 +11,9 @@
     - name: xpath
       xml:
         path: 10.100.0.30_get-interface-information.xml
-        xpath: /interface-information/physical-interface/name
+        #xpath: /interface-information/physical-interface/hardware-physical-address
+        #xpath: //physical-interface[name='ge-0/0/0']/hardware-physical-address
+        xpath: //physical-interface[name='ge-0/0/0']/*
         content: text
       register: interface_info
 

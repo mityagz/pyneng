@@ -1,0 +1,21 @@
+---
+- name: Experiment with Ansible's xml module
+  hosts:
+    - localhost
+  roles:
+    - Juniper.junos
+  connection: local
+  gather_facts: no
+
+  tasks:
+    - name: xpath
+      xml:
+        path: 10.100.0.30_get-interface-information.xml
+        xpath: /interface-information/physical-interface/name
+        content: text
+      register: interface_info
+
+
+    - name: show xpath results
+      debug:
+        var: interface_info

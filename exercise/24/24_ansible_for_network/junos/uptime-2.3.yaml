@@ -37,4 +37,5 @@
 
     - name: show query results
       debug:
-        var: last_boot.matches
+        #var: last_boot.matches
+        msg: "Last booted {{ last_boot.matches[0]['date-time'] }}; last configured {{ last_boot.matches[1]['date-time'] }}"

@@ -14,5 +14,6 @@
           host: "{{ ansible_host }}"
           timeout: 120
           user: cisco
-        load: merge
+        load: replace
         src: "config/nameserver.conf"
+        comment: installconfig.yaml playbook with nameserver.conf file

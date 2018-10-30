@@ -37,5 +37,11 @@
         src: "{{ conf_file }}"
         load: replace
         comment: "playbook base-settings.yaml"
+        diff: yes
+        dest_dir: "{{ tmp_dir }}"
+      register: config_results
+
+    - debug:
+        var: config_results
 
 

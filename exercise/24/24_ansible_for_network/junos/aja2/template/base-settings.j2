@@ -5,4 +5,17 @@ system {
         {{ dns1 }};
         {{ dns2 }};
     }
+    
+    services {
+      delete: ftp;
+      delete: telnet;
+      delete: web-management;
+      ssh {
+        root-login allow;
+      }
+      netconf {
+        ssh;
+      }
+    }
+
 }

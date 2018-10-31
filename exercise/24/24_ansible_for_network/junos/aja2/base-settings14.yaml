@@ -39,7 +39,7 @@
         comment: "playbook base-settings.yaml, commit confirmed"
         confirmed: 5
         diff: yes
-        ignoring_warning: yes
+        ignore_warning: yes
       register: config_results
       notify: confirm previous commit
 

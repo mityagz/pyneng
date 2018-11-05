@@ -1,0 +1,1 @@
+IFS=$'\n'; for f in $(ls CE[0-3]*);do IFS1=$IFS; IFS=' '; dns='dns_servers:\n'; while read l;do  dns=$dns"\n  - "$(echo -n $l | grep dns | sed -e 's/....\: //'); IFS=$IFS1;done<<<$(cat ${f}); echo -e $dns | sed -e '/^$/d' -e '/ - $/d'; done

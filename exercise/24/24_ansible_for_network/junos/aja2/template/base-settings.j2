@@ -22,3 +22,10 @@ system {
     }
 
 }
+
+{% if aja2_host.snmp is defined %}
+snmp {
+   description "{{ aja2_host.snmp.description }}";
+   location "{{ aja2_host.snmp.location }}";
+}
+{% endif %}

@@ -1,4 +1,5 @@
 ansible_host: 10.100.0.32
-dns_servers:
-  - 8.8.8.8
-  - 195.54.2.1
+aja2_host:
+  dns_servers:
+    - 8.8.8.8
+    - 195.54.2.1

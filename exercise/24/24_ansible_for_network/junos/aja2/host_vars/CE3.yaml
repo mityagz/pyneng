@@ -5,4 +5,4 @@ aja2_host:
     - 195.54.2.1
   snmp:
     description: "CE3, customer edge device"
-    location: "eve"
+    location: "eve2"

@@ -21,6 +21,16 @@ system {
       }
     }
 
+    {% if aja2_site is defined %}
+    {% if aja2_site.ntp_servers is defined %}
+    replace:
+    ntp {
+      {% for ntp in aja2_site.ntp_servers %}
+         server {{ ntp }};
+      {% endfor %}
+    }
+    {% endif %}
+    {% endif %}
 }
 
 {% if aja2_host.snmp is defined %}

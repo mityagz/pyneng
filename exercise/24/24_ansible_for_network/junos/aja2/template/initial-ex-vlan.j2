@@ -1,0 +1,47 @@
+system {
+    host-name {{ inventory_hostname }};
+    root-authentication {
+        encrypted-password "$1$JG/DQ4TP$/SqMDBsjmLO2IXvawjjGQ.";
+    }
+    login {
+        user sean {
+            uid 2000;
+            class super-user;
+            authentication {
+                encrypted-password "$1$U25qzyIz$AxMzsxhD/lj1wlDpd1f96.";
+            }
+        }
+    }
+    services {
+        ssh;
+        netconf {
+            ssh;
+        }
+    }
+}
+interfaces {
+    interface-range aja2 {
+        member ge-0/1/0;
+        member ge-0/1/1;
+        unit 0 {
+            family ethernet-switching {
+                port-mode access;
+                vlan {
+                    members aja2;
+                }
+            }
+        }
+    }
+    vlan {
+        unit 0 {
+            family inet {
+                address {{ ansible_host }}/{{ netmask }};
+            }
+        }
+    }
+}
+vlans {
+    aja2 {
+        l3-interface vlan.0;
+    }
+}

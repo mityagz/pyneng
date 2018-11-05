@@ -1,9 +1,12 @@
+{# Jinja2 comment #}
+
 system {
     host-name {{ inventory_hostname }};
     replace:
     name-server {
-        {{ dns1 }};
-        {{ dns2 }};
+        {{ % for server in aja2_host.dns_servers % }};
+           {{ server }};
+        {{ % endfor % }};
     }
     
     services {

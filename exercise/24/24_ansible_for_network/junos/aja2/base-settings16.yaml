@@ -1,0 +1,37 @@
+---
+- name: Get device uptime
+  hosts:
+    - all
+  roles:
+    - Juniper.junos
+  connection: local
+  gather_facts: no
+
+  vars:
+    connection_settings:
+      host: "{{ ansible_host }}"
+      timeout: 120
+      user: cisco
+    tmp_dir: "tmp"
+    conf_file: "{{ tmp_dir }}/{{ inventory_hostname }}.conf"
+
+  tasks:
+    - debug: var=tmp_dir
+
+    - debug: var=conf_file
+
+    - name: confirm or create configs directory
+      file:
+        path: "{{ tmp_dir }}"
+        state: directory
+      run_once: yes
+
+    - name: save device information using template
+      template:
+        src: template/base-settings.j2
+        dest: "{{ conf_file }}"
+
+    - debug:
+        var: config_results
+
+

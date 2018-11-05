@@ -1,12 +1,12 @@
-{# Jinja2 comment #}
+#jinja2: lstrip_blocks: True
 
 system {
     host-name {{ inventory_hostname }};
     replace:
     name-server {
-        {{ % for server in aja2_host.dns_servers % }};
+        {% for server in aja2_host.dns_servers %}
            {{ server }};
-        {{ % endfor % }};
+        {% endfor %}
     }
     
     services {

@@ -1,0 +1,7 @@
+CE0
+CE1
+CE2
+CE3
+
+[all:vars]
+ansible_python_interpreter=/home/python/n/pyneng/bin/python

@@ -1,0 +1,54 @@
+---
+- name: Create timestamp for filenames
+  hosts:
+    - localhost
+  connection: local
+  gather_facts: yes
+  vars:
+    systime: "{{ ansible_date_time.time | replace(':', '-') }}"
+    #config_dir: "{{ user_data_path }}/config_backups"
+    #config_filename: "{{ config_dir }}/{{ inventory_hostname }}.conf"
+    #connection_settings:
+    #  host: "{{ ansible_host }}"
+    #  user: cisco
+
+  tasks:
+    - debug:
+        var: ansible_date_time.time
+    - debug:
+        var: systime
+
+    - name: save timestamp in a variable for later use
+      set_fact:
+        timestamp: "{{ ansible_date_time.date }}_{{ systime }}"
+
+- name: Save configuration from Junos devices to files
+  hosts:
+    - all
+  roles:
+    - Juniper.junos
+  connection: local
+  gather_facts: no
+
+  vars:
+    config_dir: "{{ user_data_path }}/config_backups/{{ inventory_hostname }}"
+    config_filename: "{{ config_dir }}/{{ inventory_hostname }}_{{ hostvars.localhost.timestamp }}.conf"
+    connection_settings:
+      host: "{{ ansible_host }}"
+      user: cisco
+
+  tasks:
+    - name: confirm/create device configuration directory
+      file:
+        path: "{{ config_dir }}"
+        state: directory
+
+    - name: save device configuration
+      juniper_junos_config:
+        provider: "{{ connection_settings }}"
+        dest: "{{ config_filename }}"
+        format: text
+        retrieve: committed
+    - name:
+      debug:
+        msg: The configuration backup is in {{ config_filename }}"

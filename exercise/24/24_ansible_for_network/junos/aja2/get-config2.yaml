@@ -7,8 +7,8 @@
   connection: local
   gather_facts: no
   vars:
-    config_dir: " {{ '~/backups' | expanduser }}"
-    user_data_path: "{{ '~/ansible' | expanduser }}"
+    #config_dir: " {{ '~/backups' | expanduser }}"
+    #user_data_path: "{{ '~/ansible' | expanduser }}"
     config_dir: "{{ user_data_path }}/config_backups"
     config_filename: "{{ config_dir }}/{{ inventory_hostname }}.conf"
     connection_settings:

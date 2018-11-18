@@ -1,0 +1,32 @@
+---
+- name: Save configurations from Junos devices to files
+  hosts:
+    - all
+  roles:
+    - Juniper.junos
+  connection: local
+  gather_facts: no
+  vars:
+    config_dir: " {{ '~/backups' | expanduser }}"
+    user_data_path: "{{ '~/ansible' | expanduser }}"
+    config_dir: "{{ user_data_path }}/config_backups"
+    config_filename: "{{ config_dir }}/{{ inventory_hostname }}.conf"
+    connection_settings:
+      host: "{{ ansible_host }}"
+      user: cisco
+  tasks:
+    - name: confirm/create device configuration directory
+      file:
+        path: "{{ config_dir }}"
+        state: directory
+      run_once: yes
+      delegate_to: localhost
+
+    - name: save device configuration
+      juniper_junos_config:
+        provider: "{{ connection_settings }}"
+        dest: "{{ config_filename }}"
+        format: text
+        retrieve: committed
+    - debug:
+        var: config_dir

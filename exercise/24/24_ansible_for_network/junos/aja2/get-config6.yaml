@@ -63,7 +63,10 @@
       failed_when: diff_result.rc > 1
 
     - name: diff save
-      local_action: copy content={{ diff_result.stdout }} dest={{ config_filename }}.diff
+      #local_action: copy content={{ diff_result.stdout }} dest={{ config_filename }}.diff
+      template:
+        src: template/diff.j2
+        dest: "{{ config_filename }}.diff"
       when: (diff_result.changed) and (diff_result.rc > 0)
 
     - debug:

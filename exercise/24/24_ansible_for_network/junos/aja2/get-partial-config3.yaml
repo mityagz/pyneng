@@ -31,7 +31,7 @@
 
     - name: show filter setting from extra-vars command-line argument
       debug:
-        var: filter
+        var: filter | mandatory
       run_once: yes
 
     - name: save device configuration
@@ -40,7 +40,7 @@
         dest: "{{ config_filename }}"
         format: text
         retrieve: committed
-        filter: "{{ filter }}"
+        filter: "{{ filter | mandatory}}"
         options:
           groups: groups
           inherit: inherit

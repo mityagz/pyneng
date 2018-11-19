@@ -1,0 +1,45 @@
+---
+- name: Save configuration from Junos devices to files
+  hosts:
+    - all
+  roles:
+    - Juniper.junos
+  connection: local
+  gather_facts: no
+
+  vars:
+    config_dir: "{{ user_data_path }}/tmp"
+    config_filename: "{{ config_dir }}/{{ inventory_hostname }}.conf"
+    connection_settings:
+      host: "{{ ansible_host }}"
+      user: cisco
+
+  tasks:
+    - name: erase old backup directory if it exists
+      file:
+        path: "{{ config_dir }}"
+        state: absent
+      run_once: yes
+      delegate_to: localhost
+
+    - name: create backup directory
+      file:
+        path: "{{ config_dir }}"
+        state: directory
+      run_once: yes
+      delegate_to: localhost
+
+    - name: save device configuration
+      juniper_junos_config:
+        provider: "{{ connection_settings }}"
+        dest: "{{ config_filename }}"
+        format: text
+        retrieve: committed
+        filter: "interfaces"
+        options:
+          groups: groups
+          inherit: inherit
+
+    - name:
+      debug:
+        msg: The configuration backup is in {{ config_filename }}"

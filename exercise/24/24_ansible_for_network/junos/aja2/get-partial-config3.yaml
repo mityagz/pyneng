@@ -15,6 +15,14 @@
       user: cisco
 
   tasks:
+    - name: fail if variable 'filter' is not defined
+      fail:
+        msg: >
+               Specify the Junos configuration hierarchy you want to back up by
+               providing the extra variable 'filter' on the command line.
+               For example, --extra-vars 'filter=system/ntp'
+      when: filter is not defined
+
     - name: erase old backup directory if it exists
       file:
         path: "{{ config_dir }}"

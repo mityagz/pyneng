@@ -1,0 +1,57 @@
+#jinja2: lstrip_blocks: True
+
+{% set model = junos.model.lower() %}
+{% set personality = junos.personality | lower %}
+
+{% if model == 'vmx' %}
+   {% set max_ssh = 5 %}
+{% elif personality == 'srx_branch' %}
+   {% set max_ssh = 3 %}
+{% else %}
+   {% set max_ssh = 3 %}
+{% endif %}
+
+system {
+    host-name {{ inventory_hostname }};
+    replace:
+    name-server {
+        {% for server in aja2_host.dns_servers %}
+           {{ server }};
+        {% endfor %}
+    }
+    
+    services {
+      delete: ftp;
+      delete: telnet;
+      delete: web-management;
+      ssh {
+        root-login allow;
+        connection-limit {{ max_ssh }};
+        rate-limit {{ max_ssh }};
+      }
+      netconf {
+        ssh {
+          connection-limit {{ max_ssh }};
+          rate-limit {{ max_ssh }};
+        }
+      }
+    }
+
+    {% if aja2_site is defined %}
+    {% if aja2_site.ntp_servers is defined %}
+    replace:
+    ntp {
+      {% for ntp in aja2_site.ntp_servers %}
+         server {{ ntp }};
+      {% endfor %}
+    }
+    {% endif %}
+    {% endif %}
+}
+
+{% if aja2_host.snmp is defined %}
+snmp {
+   description "{{ aja2_host.snmp.description }}";
+   location "{{ aja2_host.snmp.location }}";
+}
+{% endif %}

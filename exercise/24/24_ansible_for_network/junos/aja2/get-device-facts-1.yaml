@@ -8,16 +8,55 @@
   gather_facts: no
 
   vars:
+    facts_dir: "{{ user_data_path }}/facts"
+    facts_build_dir: "{{ user_data_path }}/facts/build"
     connection_settings:
       host: "{{ ansible_host }}"
       user: cisco
 
   tasks:
+    - name: confirm/create report directory
+      file:
+        path: "{{ facts_dir }}"
+        state: directory
+      delegate_to: localhost
+      run_once: yes
+
+    - name: confirm/create build directory
+      file:
+        path: "{{ facts_build_dir }}"
+        state: directory
+      delegate_to: localhost
+      run_once: yes
+
     - name: get device facts
       juniper_junos_facts:
         provider: "{{ connection_settings }}"
+        savedir: "{{ facts_dir }}"
       register: junos_facts
+
+    - name: save device facts
+      template:
+        src: template/device-facts.j2
+        dest: "{{ facts_build_dir }}/{{ inventory_hostname }}.txt"
 
     - name: show device facts
       debug:
-        var: junos_facts
+       var: junos_facts
+
+    - name: get var 1
+      debug:
+       var: junos_facts.facts.version
+
+    - name: get var 2
+      debug:
+       var: junos_facts.ansible_facts.junos.version
+
+
+    - name: get var 3
+      debug:
+       var: junos.version
+
+    - name: get var 4
+      debug:
+       var: junos.RE0.up_time

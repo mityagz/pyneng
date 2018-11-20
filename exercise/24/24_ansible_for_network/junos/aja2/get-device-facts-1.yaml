@@ -1,0 +1,23 @@
+---
+- name: Get facts from Junos device
+  hosts:
+    - all
+  roles:
+    - Juniper.junos
+  connection: local
+  gather_facts: no
+
+  vars:
+    connection_settings:
+      host: "{{ ansible_host }}"
+      user: cisco
+
+  tasks:
+    - name: get device facts
+      juniper_junos_facts:
+        provider: "{{ connection_settings }}"
+      register: junos_facts
+
+    - name: show device facts
+      debug:
+        var: junos_facts

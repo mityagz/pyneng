@@ -10,6 +10,7 @@
   vars:
     facts_dir: "{{ user_data_path }}/facts"
     facts_build_dir: "{{ user_data_path }}/facts/build"
+    header: /home/python/pyneng/exercise/24/24_ansible_for_network/junos/aja2/template/0_device-facts-columns.txt
     connection_settings:
       host: "{{ ansible_host }}"
       user: cisco
@@ -54,6 +55,13 @@
     - name: get device facts
       juniper_junos_facts:
         provider: "{{ connection_settings }}"
+
+    - name: copy header file to build_dir
+      copy:
+        src: "{{ header }}"
+        dest: "{{ facts_build_dir }}/"
+      run_once: yes
+      delegate_to: localhost
 
     - name: save device facts
       template:

@@ -1,0 +1,2 @@
+"Hostname","Junos version","Model","Switch Style","Serial Number","Dual RE","Master","VC Capable","VCFabric","VC Master","VC Mode","SRX Cluster","SRX Cluster ID"
+

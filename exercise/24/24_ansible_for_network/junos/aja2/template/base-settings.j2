@@ -2,6 +2,19 @@
 
 system {
     host-name {{ inventory_hostname }};
+    root-authentication {
+        encrypted-password "{{ root_hash }}";
+    }
+
+    login {
+        user monitor {
+           uid 2015;
+           class read-only;
+           authentication {
+               encrypted-password  "{{ monitor_hash }}";
+           }
+        }
+    }
     replace:
     name-server {
         {% for server in aja2_host.dns_servers %}

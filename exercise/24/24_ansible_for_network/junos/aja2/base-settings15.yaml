@@ -33,11 +33,11 @@
 
     - name: save device information using template
       template:
-        src: template/base-settings2.j2
+        src: template/base-settings.j2
         dest: "{{ conf_file }}"
 
-    - fail:
-        msg: "early exit for template troubleshooting"
+    #- fail:
+    #    msg: "early exit for template troubleshooting"
 
     - name: install generated configuration file onto device
       juniper_junos_config:

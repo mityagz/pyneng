@@ -1,0 +1,3 @@
+user_data_path: "{{ '~/ansible' | expanduser }}"
+root_hash: "{{ vault_root_hash }}"
+monitor_hash: "{{ vault_monitor_hash }}"

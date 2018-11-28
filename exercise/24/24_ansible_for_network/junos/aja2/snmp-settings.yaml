@@ -1,0 +1,27 @@
+---
+- name: Generate and Install Configuration File
+  hosts:
+    - all
+  roles:
+    - Juniper.junos
+    - config_setup_commit
+    - snmp
+  connection: local
+  gather_facts: no
+
+  vars:
+    config_assemble: "{{ user_data_path }}/config/{{ inventory_hostname }}"
+    config_assemble_build: "{{ config_assemble }}/build"
+    config_file: "{{ config_assemble }}/snmp.conf"
+    playbook_name: snmp-settings.yaml
+    connection_settings:
+      host: "{{ ansible_host }}"
+      timeout: 120
+      user: cisco
+
+  tasks:
+    - name: assemble config fragments
+      assemble:
+        src: "{{ config_assemble_build }}"
+        dest: "{{ config_file }}"
+      notify: install config onto device

@@ -5,19 +5,24 @@
   roles:
     - Juniper.junos
     - config_setup_commit
-    - snmp
+    - system
   connection: local
   gather_facts: no
 
   vars:
     config_assemble: "{{ user_data_path }}/config/{{ inventory_hostname }}"
     config_assemble_build: "{{ config_assemble }}/build"
-    config_file: "{{ config_assemble }}/snmp.conf"
-    playbook_name: snmp-settings.yaml
+    config_file: "{{ config_assemble }}/system.conf"
+    playbook_name: system-settings.yaml
     connection_settings:
       host: "{{ ansible_host }}"
       timeout: 120
       user: cisco
+
+  pre_tasks:
+    - name: get device facts
+      juniper_junos_facts:
+      provider: "{{ connection_settings }}"
 
   tasks:
     - name: assemble config fragments

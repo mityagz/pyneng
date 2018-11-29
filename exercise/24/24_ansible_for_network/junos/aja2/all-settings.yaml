@@ -5,6 +5,7 @@
   roles:
     - Juniper.junos
     - config_setup_commit
+    - snmp
     - system
   connection: local
   gather_facts: no
@@ -12,8 +13,8 @@
   vars:
     config_assemble: "{{ user_data_path }}/config/{{ inventory_hostname }}"
     config_assemble_build: "{{ config_assemble }}/build"
-    config_file: "{{ config_assemble }}/system.conf"
-    playbook_name: system-settings.yaml
+    config_file: "{{ config_assemble }}/all.conf"
+    playbook_name: all-settings.yaml
     connection_settings:
       host: "{{ ansible_host }}"
       timeout: 120

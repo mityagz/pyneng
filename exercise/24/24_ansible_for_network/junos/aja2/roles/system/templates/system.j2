@@ -1,0 +1,45 @@
+#jinja2: lstrip_blocks: True
+{% set model = junos.model.lower() %}
+{% set personality = junos.personality | lower %}
+
+{#- Determine SSH connection-limit and rate-limit based on device facts #}
+{% if model == 'vsrx' %}
+  {% set max_ssh = 5 %}
+{% elif personality == 'srx_branch' %}
+  {% set max_ssh = 3 %}
+{% else %}
+  {% set max_ssh = 10 %}
+{% endif %}
+
+{#- Generate basic settings for the device #}
+system {
+    host-name {{ inventory_hostname }};
+    domain-name aja2.com;
+    domain-search [ aja2.com aja2.net ];
+    replace:
+    name-server {
+      {% for server in aja2_host.dns_servers %}
+         {{ server }};
+      {% endfor %}
+    }
+    services {
+        delete: ftp;
+        netconf {
+           ssh {
+            connection-limit {{ max_ssh }};
+            rate-limit {{ max_ssh }};
+          }
+        }
+        ssh {
+            connection-limit {{ max_ssh }};
+            rate-limit {{ max_ssh }};
+        }
+        delete: telnet;
+        delete: web-management;
+    }
+    replace:
+    ntp {
+     {% for ntp in aja2_site.ntp_servers %}
+        server {{ ntp }};
+     {% endfor %}
+}

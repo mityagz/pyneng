@@ -32,3 +32,15 @@
       loop: "{{ lldp.results }}"
       loop_control:
         label: "{{ item.item }}"
+
+    - name: get neighbor details
+      xml:
+        xmlstring: "{{ item }}"
+        xpath: //lldp-remote-system-name | //lldp-remote-port-description
+        content: text
+      loop: "{{ lldp.results | map(attribute='stdout') | list }}"
+      register: neighbors
+
+    - name: show neighbor details
+      debug:
+        var: neighbors

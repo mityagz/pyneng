@@ -22,8 +22,8 @@
       register: jversion
       retries: 2
       delay: 15
-      until: jversion is success
-      # until: (jversion is success) or (jversion.msg.find("ConnectAuthError") >= 0)
+      #until: jversion is success
+      until: (jversion is success) or (jversion.msg.find("ConnectAuthError") >= 0)
 
     - name: display Junos version
       debug:

@@ -1,8 +1,8 @@
 #!/home/python/n/pyneng/bin/python
 """Query devices for maximum allowed SSH connection-limit and rate-limit."""
 
-
 import re
+from ansible.module_utils.basic import AnsibleModule
 import sys
 from jnpr.junos import Device
 from jnpr.junos.exception import ConfigLoadError
@@ -167,22 +167,34 @@ class MaxSSHConnections(object):
 
 def main():
    """Test the MaxSSHConnections class."""
-   desired_connections = 15
-   desired_rate = 10
-   test_value = 0
-   device = '10.100.0.30'
-   user = 'cisco'
+   # define arguments from Ansible
+   module = AnsibleModule(
+        argument_spec=dict(
+           host=dict(required=True),
+           test_value=dict(required=False, type='int', default=0),
+           rate_limit=dict(required=False, type='int', default=10),
+           connection_limit=dict(required=False, type='int', default=15)
+        )
+   )
+   # copy playbook arguments into local variables
+   host = module.params['host']
+   test_value = module.params['test_value']
+   rate_limit = module.params['rate_limit']
+   connection_limit = module.params['connection_limit']
 
-   find_max = MaxSSHConnections(device, user, test_value=test_value,
-                                rate_limit=desired_rate,
-                                connection_limit=desired_connections)
+
+   # instantiate MaxSSHConnections and run
+   find_max = MaxSSHConnections(host, user='cisco', test_value=test_value,
+                                rate_limit=rate_limit,
+                                connection_limit=connection_limit)
    try:
       find_max.run()
    except Exception as err:
-      print(str(err))
-      sys.exit(1)
+      module.fail_json(msg=str(err), results=find_max.results)
 
-   pprint(find_max.results)
+   module.exit_json(changed=False, results=find_max.results,
+                    rate_limit=find_max.results['rate_limit'],
+                    connection_limit=find_max.results['connection_limit'])
 
 
 ######################################################################

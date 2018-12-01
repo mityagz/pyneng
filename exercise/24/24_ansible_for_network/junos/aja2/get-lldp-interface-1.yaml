@@ -27,4 +27,5 @@
 
     - name: display lldp neighbor data
       debug:
-        var: lldp
+        var: item.stdout_lines
+      loop: "{{ lldp.results }}"

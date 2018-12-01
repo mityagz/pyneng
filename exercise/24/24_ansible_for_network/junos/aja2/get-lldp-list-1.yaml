@@ -1,5 +1,5 @@
 ---
-- name: Get LLDP neighbor information
+- name: Get LLDP neighbor information and save interface descriptions using templates
   hosts:
     - all
   roles:
@@ -11,6 +11,8 @@
     connection_settings:
       host: "{{ ansible_host }}"
       user: cisco
+    tmp_dir: "{{ user_data_path }}/tmp"
+    template_dir: "template"
 
   tasks:
     - name: get lldp neighbor table
@@ -19,10 +21,6 @@
         rpcs: get-lldp-neighbors-information
         format: xml
       register: lldp
-
-    - name: display lldp neighbor results
-      debug:
-        var: lldp.stdout_lines
 
     - name: get neighbor details
       xml:
@@ -34,10 +32,8 @@
       loop: "{{ aja2_host.uplinks }}"
       register: neighbors
 
-    - name: show neighbor results
-      debug:
-        #var: neighbors
-        msg: "{{ item.matches }}"
+    - name: save interface descriptions, template 1
+      template:
+        src: "{{ template_dir }}/int-desc-1.j2"
+        dest: "{{ tmp_dir }}/{{ inventory_hostname }}-{{ item.item | replace('/', '-') }}.conf"
       loop: "{{ neighbors.results }}"
-      loop_control:
-       label: "{{ item.item }}"

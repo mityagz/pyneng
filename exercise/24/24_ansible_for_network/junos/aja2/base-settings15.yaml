@@ -26,6 +26,16 @@
       juniper_junos_facts:
         provider: "{{ connection_settings }}"
 
+    - name: get max ssh values
+      max_ssh_connections:
+        host: "{{ ansible_host }}"
+        rate_limit: 8
+      register: jmax
+
+    - name: display max ssh values
+      debug:
+          var: jmax
+
     - name: display device facts
       debug:
         var: junos

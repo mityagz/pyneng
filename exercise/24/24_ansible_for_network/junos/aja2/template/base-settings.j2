@@ -28,9 +28,14 @@ system {
       delete: web-management;
       ssh {
         root-login allow;
+        connection-limit {{ jmax.connection_limit }};
+        rate-limit {{ jmax.rate_limit }};
       }
       netconf {
-        ssh;
+        ssh {
+         connection-limit {{ jmax.connection_limit }};
+         rate-limit {{ jmax.rate_limit }};
+        }
       }
     }
 

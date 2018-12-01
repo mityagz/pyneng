@@ -1,0 +1,27 @@
+  ---
+- name: Get LLDP neighbor information
+  hosts:
+    - all
+  roles:
+    - Juniper.junos
+  connection: local
+  gather_facts: no
+
+  vars:
+    connection_settings:
+      host: "{{ ansible_host }}"
+
+  tasks:
+    - name: get lldp neighbor table
+      juniper_junos_rpc:
+        provider: "{{ connection_settings }}"
+        rpcs: get-lldp-neighbors-information
+        # rpcs: get-lldp-interface-neighbors-information
+        # kwargs:
+        #   interface_name: ge-0/1/0
+        format: xml
+      register: lldp
+
+    - name: display lldp neighbor data
+      debug:
+        var: lldp.stdout_lines

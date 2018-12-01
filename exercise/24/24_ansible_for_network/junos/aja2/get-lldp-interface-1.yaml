@@ -40,7 +40,12 @@
         content: text
       loop: "{{ lldp.results | map(attribute='stdout') | list }}"
       register: neighbors
+      loop_control:
+        label: "{{ item | regex_search('<lldp-local-interface>[^<]+') }}"
 
     - name: show neighbor details
       debug:
-        var: neighbors
+        msg: "{{ item.matches }}"
+      loop: "{{ neighbors.results }}"
+      loop_control:
+        label: "{{ item.item | regex_search('<lldp-local-interface>[^<]+') }}"

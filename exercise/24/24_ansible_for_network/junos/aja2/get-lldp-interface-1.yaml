@@ -20,10 +20,11 @@
         #rpcs: get-lldp-interface-neighbors-information
         rpcs: get-lldp-interface-neighbors
         kwargs:
-          interface-device: ge-0/0/3
+          interface-device: "{{ item }}"
         format: xml
+      loop: "{{ aja2_host.uplinks }}"
       register: lldp
 
     - name: display lldp neighbor data
       debug:
-        var: lldp.stdout_lines
+        var: lldp
